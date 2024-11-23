@@ -1,0 +1,14 @@
+extends  ../../layouts/default.pug
+
+block top 
+  include ../../partials/navbar.pug
+block main 
+  h1 Trang home
+block map
+  div(id="map")
+  div xin chao moi nguoi
+  div #{devices}
+  //-  ul(class="devices_map")
+  each item in devices 
+    div(class="device_item_map" data-title=item.title data-type=item.type_name  data-id=item._id data-latitude=item.location.latitude data-longitude=item.location.longitude data-status=item.status) #{item.title}
+//- data-latitude=item.location.latitude data-longitude=item.location.longitude

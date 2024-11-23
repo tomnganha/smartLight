@@ -1,0 +1,25 @@
+extends ../../layouts/default.pug
+block main 
+    if (device.title)
+        h1(class="mb-4") Title: <b>#{device.title}</b>
+    if (device.type)
+        div(class="mb-4") Type: <b>#{device.type}</b>
+    if (device.status)
+        div(class="mb-4")
+            span Status 
+            if (device.status == "on")
+                span(class="ms-1 badge bg-success") On 
+            else 
+                span(class="ms-1 badge bg-danger") Off 
+    if (device.location.latitude)
+        div(class="mb-4") Latitude: <b>#{device.location.latitude}</b>
+    if (device.location.longitude)
+        div(class="mb-4") Longitude: <b>#{device.location.longitude}</b>
+    if (device.installation_date)
+        div(class="mb-4") Installation date: <b>#{device.installation_date}</b>
+    if (device.last_maintenance)
+        div(class="mb-4") Last maintenance: <b>#{device.last_maintenance}</b>
+    a( href=`${prefixAdmin}/devices/edit/${device._id}`
+        class="btn btn-warning btn-sm ms-1"
+    ) Edit 
+    script(src="/admin/js/device.js")
