@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const route = require("./router/client/index.route");
 const routeAdmin = require("./router/admin/index.route");
 const database = require("./config/database");
+const MongoStore = require("connect-mongo");
 
 const systemConfig = require("./config/systems");
 
@@ -39,6 +40,9 @@ app.set("view engine", "pug");
 // Cấu hình session
 app.use(
   session({
+    // store: new MongoStore({
+    //   mongooseConnection: mongoose.connection, // Kết nối MongoDB sử dụng Mongoose
+    // }),
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
@@ -50,7 +54,7 @@ app.use(
 
 //flash
 app.use(cookieParser("keyboard cat"));
-app.use(session({ cookie: { maxAge: 60000 } }));
+//app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 
 //App local variables
