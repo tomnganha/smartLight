@@ -19,21 +19,6 @@ const port = process.env.PORT;
 app.use(methodOverride("_method"));
 database.connect();
 
-//taoj model
-const Devices = mongoose.model(
-  "Devices",
-  {
-    _id: String,
-    location: Object,
-    status: String,
-    brightness_level: Number,
-    last_maintenance: Date,
-    installation_date: Date,
-    type: String,
-  },
-  "Devices"
-);
-
 //cau hinh de su dung pug
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
@@ -44,7 +29,7 @@ app.use(
     // store: new MongoStore({
     //   mongooseConnection: mongoose.connection, // Kết nối MongoDB sử dụng Mongoose
     // }),
-    //secret: "your-secret-key",
+    secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
     cookie: {
