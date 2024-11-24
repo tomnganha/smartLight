@@ -2,12 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
+//const session = require("express-session");
 const methodOverride = require("method-override");
 const route = require("./router/client/index.route");
 const routeAdmin = require("./router/admin/index.route");
 const database = require("./config/database");
 const MongoStore = require("connect-mongo");
+const session = require("cookie-session");
 
 const systemConfig = require("./config/systems");
 
