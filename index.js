@@ -44,7 +44,7 @@ app.use(
     // store: new MongoStore({
     //   mongooseConnection: mongoose.connection, // Kết nối MongoDB sử dụng Mongoose
     // }),
-    secret: "your-secret-key",
+    //secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
     cookie: {
