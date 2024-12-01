@@ -8,11 +8,14 @@ var options = {
   username: "thai",
   password: "123456",
 };
+//topic change status light
 global._PUBLISH_TOPIC = "pbl3-esp32-001/lights/control";
+global._SUBSCRIBE_TOPIC = "pbl3-esp32-001/lights/status";
 // initialize the MQTT client
 var client = mqtt.connect(options);
 
-const topic = "pbl3-esp32-001/lights/status";
+//const topic = "pbl3-esp32-001/lights/status";
+const topic = _SUBSCRIBE_TOPIC;
 module.exports.connectMqtt = async () => {
   try {
     await client.on("connect", () => {

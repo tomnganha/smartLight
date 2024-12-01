@@ -8,8 +8,9 @@ if (buttonChangeStatus.length > 0) {
     button.addEventListener("click", (e) => {
       const statusCurrent = button.getAttribute("data-status");
       const id = button.getAttribute("data-id");
+      const title = button.getAttribute("data-title");
       let statusChange = statusCurrent == "off" ? "on" : "off";
-      const action = path + `/${statusChange}/${id}?_method=PATCH`;
+      const action = path + `/${statusChange}/${id}/${title}?_method=PATCH`;
       formChangeStatus.action = action;
       formChangeStatus.submit();
     });

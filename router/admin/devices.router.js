@@ -6,7 +6,7 @@ const controller = require("../../controllers/admin/devices.controller");
 const validates = require("../../validates/admin/device.validate");
 
 router.get("/", controller.devices);
-router.patch("/change-status/:status/:id", controller.changeStatus);
+router.patch("/change-status/:status/:id/:title", controller.changeStatus);
 router.delete("/delete/:id", controller.deleteItem);
 router.get("/create", controller.createItem);
 router.post("/create", validates.createPost, controller.createItemPost);

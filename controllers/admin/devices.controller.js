@@ -50,14 +50,14 @@ module.exports.devices = async (req, res) => {
 
 //[PATCH] /admin/devices/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
-  let light = await Device.findOne({ _id: req.params.id });
-  console.log(light);
+  // let light = await Device.findOne({ _id: req.params.id });
+  // console.log(light);
   const client = mqttConfig.client;
-  let data = { [light.title]: req.params.status };
+  let data = { [req.params.title]: req.params.status };
   data = JSON.stringify(data);
   console.log(data);
   console.log(typeof data);
-  client.publish("pbl3-esp32-001/lights/control", data, (error) => {
+  client.publish(_PUBLISH_TOPIC, data, (error) => {
     if (error) {
       console.error(error);
     }
