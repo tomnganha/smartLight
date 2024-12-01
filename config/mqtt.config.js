@@ -27,6 +27,19 @@ module.exports.connectMqtt = async () => {
   } catch (error) {
     console.log("Connect to Mqtt Broker failed");
   }
+  setInterval(() => {
+    if (client.connected) {
+      client.publish("thai12345678910/nodejs", "ping");
+    }
+  }, 30000);
+  client.on("close", () => {
+    console.log("MQTT connection closed. Reconnecting...");
+    client.reconnect();
+  });
+
+  client.on("offline", () => {
+    console.log("MQTT client is offline. Check network or broker.");
+  });
 };
 module.exports.client = client;
 module.exports.handlerDataFromMQTT = (client) => {
