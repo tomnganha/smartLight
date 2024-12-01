@@ -46,7 +46,7 @@ block main
                                     if(item.status=='on')
                                         a(
                                         href="javascript:;" 
-                                        class="badge bg-success text-decoration-none"
+                                        class=`${item.title} badge bg-success text-decoration-none`
                                         button-change-status
                                         data-id=item._id
                                         data-status=item.status
@@ -54,7 +54,7 @@ block main
                                     else 
                                         a(
                                         href="javascript:;" 
-                                        class="badge bg-secondary text-decoration-none"
+                                        class=`${item.title} badge bg-secondary text-decoration-none`
                                         button-change-status
                                         data-id=item._id
                                         data-status=item.status

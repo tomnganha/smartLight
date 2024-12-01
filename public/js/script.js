@@ -1,4 +1,4 @@
-//const cookieParser = require("cookie-parser");
+const socket = io();
 
 var map = L.map("map").setView([51.505, -0.09], 13);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -11,7 +11,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
 var popup = L.popup();
-
+console.log("ok file script");
 var devices = [];
 const devicesElement = document.querySelectorAll(".device_item_map");
 
@@ -74,6 +74,25 @@ devices.forEach((item, i) => {
     )
     .openPopup();
 });
+
+//update status from MQTT Broker
+socket.on("SERVER_SEND_STATUS_FROM_MQTT", (data) => {
+  console.log(markers);
+  console.log("client received data from mqtt");
+  console.log(data);
+  const bulkOps = Object.keys(data);
+  console.log(bulkOps);
+  bulkOps.map((light, index) => {
+    if (data[light] == "on") {
+      markers[index].setIcon(greenIcon);
+    } else if (data[light] == "off") {
+      markers[index].setIcon(greyIcon);
+    }
+  });
+});
+
+//end update status from MQTT Broker
+
 var featureGroup = L.featureGroup(markers).addTo(map);
 map.fitBounds(featureGroup.getBounds(), {
   padding: [100, 100],
@@ -86,5 +105,4 @@ function onMapClick(e) {
     .setContent("You clicked the map at " + e.latlng.toString())
     .openOn(map);
 }
-
 map.on("click", onMapClick);

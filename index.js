@@ -2,15 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
-//const session = require("express-session");
 const methodOverride = require("method-override");
 const route = require("./router/client/index.route");
 const routeAdmin = require("./router/admin/index.route");
 const database = require("./config/database");
-const MongoStore = require("connect-mongo");
+//const MongoStore = require("connect-mongo");
 const session = require("cookie-session");
 
 const systemConfig = require("./config/systems");
+const mqttConfig = require("./config/mqtt.config");
+const socketConfig = require("./config/socket.config");
+
+const { createServer } = require("node:http");
+const { join } = require("node:path");
+const { Server } = require("socket.io");
 
 require("dotenv").config();
 
@@ -23,12 +28,21 @@ database.connect();
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
+//socketio
+const server = createServer(app);
+global._io = new Server(server);
+socketConfig.connectionSocketIo();
+//end sockhetio
+
+//KET NOI MQTT
+mqttConfig.connectMqtt();
+const client = mqttConfig.client;
+mqttConfig.handlerDataFromMQTT(client);
+//END KET NOI MQTT
+
 // Cấu hình session
 app.use(
   session({
-    // store: new MongoStore({
-    //   mongooseConnection: mongoose.connection, // Kết nối MongoDB sử dụng Mongoose
-    // }),
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
@@ -55,6 +69,6 @@ app.use(express.urlencoded({ extended: true }));
 route(app);
 routeAdmin(app);
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

@@ -2,6 +2,7 @@ const Device = require("../../models/device.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
+const mqttConfig = require("../../config/mqtt.config");
 const mongoose = require("mongoose");
 
 const systemConfig = require("../../config/systems");
@@ -49,6 +50,19 @@ module.exports.devices = async (req, res) => {
 
 //[PATCH] /admin/devices/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
+  let light = await Device.findOne({ _id: req.params.id });
+  console.log(light);
+  const client = mqttConfig.client;
+  let data = { [light.title]: req.params.status };
+  data = JSON.stringify(data);
+  console.log(data);
+  console.log(typeof data);
+  client.publish("pbl3-esp32-001/lights/control", data, (error) => {
+    if (error) {
+      console.error(error);
+    }
+  });
+
   console.log(req.params);
   const status = req.params.status;
   const id = req.params.id;

@@ -2,7 +2,7 @@ const Device = require("../../models/device.model");
 
 module.exports.index = async (req, res) => {
   var devices = await Device.find({});
-  console.log(devices);
+
   devices = devices.map((device) => {
     return {
       _id: device.id,
@@ -18,7 +18,7 @@ module.exports.index = async (req, res) => {
       },
     };
   });
-  console.log(devices);
+
   res.render("client/pages/home/index", {
     titlePage: "Home",
     devices: devices,
