@@ -87,7 +87,7 @@ module.exports.createItem = async (req, res) => {
 function generateRandomId() {
   return Math.random().toString(36).substr(2, 9); // Tạo chuỗi 9 ký tự ngẫu nhiên
 }
-
+///[POST] /admin/devices/create
 module.exports.createItemPost = async (req, res) => {
   if (!req.body.title) {
     req.flash("error", "Please enter a title");
@@ -125,6 +125,7 @@ module.exports.edit = async (req, res) => {
   try {
     const find = { _id: req.params.id };
     var device = await Device.findOne(find);
+    console.log("device: ", device);
     let installation_date = device.installation_date
       .toISOString()
       .split("T")[0];

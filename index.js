@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");

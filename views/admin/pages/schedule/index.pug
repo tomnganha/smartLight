@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main 
+    +alert-error("2000")
+    +alert-success("2000")
+    h1(class="md-4") Schedule
+     form(
+        action=`${prefixAdmin}/schedule?_method=PATCH`
+        id='form-set-schedule'
+        method='POST'
+
+    )
+        div(class="form-group")
+            label(for="onTime" class="form-label") set time on
+            input(
+                type="time"
+                class="form-control"
+                id="onTime"
+                name="onTime"
+                value=onTime 
+                
+            )
+        div(class="form-group")
+            label(for="type" class="form-label") set time off
+            input(
+                type="time"
+                class="form-control"
+                id="offTime"
+                name="offTime"
+                value=offTime
+            )
+       
+        div(class="form-group")
+            button(
+                id="btn-schedule"
+                type="submit"
+                class="btn btn-primary"
+            ) Set schedule 
+    script(src="/admin/js/schedule.js")

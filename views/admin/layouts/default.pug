@@ -8,9 +8,10 @@ html
     link(rel="stylesheet" href ="/admin/css/style.css")
     style.
   body
-    .d-flex
+    .d-flex.flex-row
       include ../partials/sider.pug
-      .container-fluid(style='margin-left: 250px; padding-top: 20px')
+      //- .container-fluid(style='margin-left: 250px; padding-top: 20px')
+      .container-fluid.pt-2
         include ../partials/header.pug  
         block main
     script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')
