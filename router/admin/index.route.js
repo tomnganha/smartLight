@@ -6,6 +6,9 @@ const devicesRoutes = require("./devices.router");
 const authRoutes = require("./auth.router");
 const accountRoutes = require("./accounts.router");
 const scheduleRoutes = require("./schedule.router");
+const reportRoutes = require("./report.route");
+const modeRoutes = require("./mode.router");
+
 const PATH_ADMIN = systemConfig.prefixAdmin;
 module.exports = (app) => {
   app.use(
@@ -17,4 +20,6 @@ module.exports = (app) => {
   app.use(PATH_ADMIN + "/auth", authRoutes);
   app.use(PATH_ADMIN + "/accounts", authMiddleware.requireAuth, accountRoutes);
   app.use(PATH_ADMIN + "/schedule", authMiddleware.requireAuth, scheduleRoutes);
+  app.use(PATH_ADMIN + "/reports", authMiddleware.requireAuth, reportRoutes);
+  app.use(PATH_ADMIN + "/mode", authMiddleware.requireAuth, modeRoutes);
 };

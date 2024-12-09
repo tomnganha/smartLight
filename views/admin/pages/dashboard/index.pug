@@ -3,3 +3,14 @@ include ../../mixins/alert.pug
 block main 
     +alert-error("2000")
     h1 Dashboard admin
+    .container-fluid
+        ul(class="list-group ")
+            li(class="list-group-item") Total light #{count_light}
+                a(href=`${prefixAdmin}/devices` class="ms-3") Go
+            li(class="list-group-item") Schedule lights to turn on and off:  onTime  (#{schedule.onTime})      offTime: (#{schedule.offTime})
+                a(href=`${prefixAdmin}/schedule` class="ms-3") Go
+            li(class="list-group-item") Report: #{count_reports}
+                a(href=`${prefixAdmin}/reports` class="ms-3") Go
+            li(class="list-group-item") Power consumption:  #{power}
+                a(href=`${prefixAdmin}/dashboard` class="ms-3") Go
+        

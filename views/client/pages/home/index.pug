@@ -1,10 +1,12 @@
 extends  ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block top 
   include ../../partials/navbar.pug
 block main 
 
 block map
+  +alert-success("2000")
   div(id="map")
   each item in devices 
     div(class="device_item_map" data-title=item.title data-type=item.type_name  data-id=item._id data-latitude=item.location.latitude data-longitude=item.location.longitude data-status=item.status)

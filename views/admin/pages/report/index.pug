@@ -1,0 +1,94 @@
+extends ../../layouts/default.pug
+include  ../../mixins/filterStatus.pug
+include  ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/alert.pug
+block main 
+    h1 reports page
+    //- .card.md-3 
+    //-     .card-header Filter and Search 
+    //-         .card-body 
+    //-             .row 
+    //-                 .col-6 
+    //-                     +filter-status(filterStatus)
+    //-                 .col-6  
+    //-                     +search(keyword)
+    .card.md-3 
+        .card-header Reports List
+            .card-body 
+                .row 
+                    //- .col-4
+                    //-     a(
+                    //-         href=`${prefixAdmin}/devices/create`
+                    //-         class="btn btn-outline-success"
+                    //-     ) Create
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Label </th>
+                            <th scope="col">Light title </th>
+                            <th scope="col">Status</th>
+                            <th scope="col">description</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Date</th>
+                            //- <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        each item,index in reports 
+                            <tr>
+                                <th scope="row">#{index+1}</th>
+                                <td>#{item.light_title}</td>
+                                <td>#{item.status}</td>
+                                <td>#{item.description}</td>
+                                <td>#{item.time}</td>
+                                <td>#{item.date}</td>
+                        //- each item,index  in devices 
+                        //-     <tr>
+                        //-         <th scope="row">#{index+1}</th>
+                        //-         <td>#{item.type}</td>
+                        //-         <td>#{item.title}</td>
+                        //-         <td>
+                                    
+                        //-             if(item.status=='on')
+                        //-                 a(
+                        //-                 href="javascript:;" 
+                        //-                 class=`${item.title} badge bg-success text-decoration-none`
+                        //-                 button-change-status
+                        //-                 data-id=item._id
+                        //-                 data-title=item.title
+                        //-                 data-status=item.status
+                        //-                 ) On
+                        //-             else 
+                        //-                 a(
+                        //-                 href="javascript:;" 
+                        //-                 class=`${item.title} badge bg-secondary text-decoration-none`
+                        //-                 button-change-status
+                        //-                 data-id=item._id
+                        //-                 data-title=item.title
+                        //-                 data-status=item.status
+                        //-                 ) Off
+                        //-             //-label.form-check-label(for='flexSwitchCheckDefault') #{item.status=='on'?"ON":"OFF"}
+                        //-         </td>
+                        //-         <td>
+                        //-             label.form-label(for='customRange1') Bright ness
+                        //-             input#customRange1.form-range(type='range')
+                        //-         </td>
+                        //-         <td>
+                        //-             a( href=`${prefixAdmin}/devices/details/${item._id}`
+                        //-                 class="btn btn-secondary btn-sm"
+                        //-             ) Detail 
+                        //-             a( href=`${prefixAdmin}/devices/edit/${item._id}`
+                        //-                 class="btn btn-warning btn-sm ms-1"
+                        //-             ) Edit 
+                        //-             button(
+                        //-             class="btn btn-danger btn-sm ms-1 "
+                        //-             button-delete
+                        //-             data-id=item._id
+                        //-             ) Delete 
+                        //-         </td>
+                        //-     </tr>
+                    
+                    </tbody>
+                </table>
+    //- +pagination(pagination)

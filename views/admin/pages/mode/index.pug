@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug
+include  ../../mixins/filterStatus.pug
+block main 
+    h1 Mode pages
+    div #{mode}
+block main 
+    h1(class="mb-4") Mode pages 
+    .card.mb-3 
+        .card-header List 
+        .card-body 
+            .row 
+            table(class="table table-hover table-sm")
+                thread 
+                    tr 
+                        th STT 
+                        th Mode 
+                        th Status 
+                tbody 
+                     tr 
+                        td #{1} 
+                        td Power Saving Mode 
+                        td
+                            if(mode.powerSavingMode =='on')
+                                a(
+                                href="javascript:;" 
+                                data-mode="powerSavingMode"
+                                class=`badge bg-success text-decoration-none`
+                                button-change-powerSavingMode
+                                data-powerSavingMode=mode.powerSavingMode
+                                ) On
+                            else 
+                                a(
+                                href="javascript:;" 
+                                data-mode="powerSavingMode"
+                                class=`badge bg-secondary text-decoration-none`
+                                button-change-powerSavingMode
+                                data-powerSavingMode=mode.powerSavingMode
+                                ) Off
+    form(
+        action=""
+        method="POST"
+        id="form-change-mode"
+        data-path=`${prefixAdmin}/mode/change-mode`
+    )

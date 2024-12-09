@@ -1,6 +1,8 @@
 const deviceRoutes = require("./device.route");
-const HomeRouter = require("./home.route");
+const homeRouter = require("./home.route");
+const reportRouter = require("./report.route");
 module.exports = (app) => {
-  app.use("/", HomeRouter);
+  app.use("/", homeRouter);
   app.use("/device", deviceRoutes);
+  app.use("/report", reportRouter);
 };

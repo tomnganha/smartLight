@@ -1,3 +1,6 @@
+//const systemConfig = require("../../config/systems");
+
+//const PATH_ADMIN = systemConfig.prefixAdmin;
 const socket = io();
 
 var map = L.map("map").setView([51.505, -0.09], 13);
@@ -65,12 +68,15 @@ devices.forEach((item, i) => {
     icon: item.status == "on" ? greenIcon : greyIcon,
   })
     .bindPopup(
-      `<ul>
-      <li>title: ${item.title}</li>
-      <li>Type: ${item.type}</li>
+      `<ul class="ul-popup">
+      <li class="li-popup">title: ${item.title}</li>
+      <li class="li-popup">Type: ${item.type}</li>
       </ul>
-      <a href="#">details</a>
-      <button>edit</button>`
+      <div class="d-flex flex-row justify-content-around">
+      <a href="/admin/devices/details/${item._id}">Details</a>
+      <a href="/report/${item._id}">Report</a>
+      </div>
+      `
     )
     .openPopup();
 });
@@ -106,3 +112,14 @@ function onMapClick(e) {
     .openOn(map);
 }
 map.on("click", onMapClick);
+
+//show alert
+const showAlert = document.querySelector("[show-alert]");
+if (showAlert) {
+  const time = parseInt(showAlert.getAttribute("data-time"));
+  setTimeout(() => {
+    showAlert.classList.add("alert-hidden");
+  }, time);
+  console.log(showAlert);
+}
+//end show alert
