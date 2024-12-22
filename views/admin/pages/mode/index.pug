@@ -4,6 +4,7 @@ block main
     h1 Mode pages
     div #{mode}
 block main 
+    div #{mode}
     h1(class="mb-4") Mode pages 
     .card.mb-3 
         .card-header List 
@@ -14,7 +15,7 @@ block main
                     tr 
                         th STT 
                         th Mode 
-                        th Status 
+                        th Status or Value
                 tbody 
                      tr 
                         td #{1} 
@@ -36,9 +37,40 @@ block main
                                 button-change-powerSavingMode
                                 data-powerSavingMode=mode.powerSavingMode
                                 ) Off
+                     tr 
+                        td #{2} 
+                        td Auto Light Mode 
+                        td
+                            if(mode.autoLightMode =='on')
+                                a(
+                                href="javascript:;" 
+                                data-mode="autoLightMode"
+                                class=`badge bg-success text-decoration-none`
+                                button-change-autoLightMode
+                                data-autoLightMode=mode.autoLightMode
+                                ) On
+                            else 
+                                a(
+                                href="javascript:;" 
+                                data-mode="autoLightMode"
+                                class=`badge bg-secondary text-decoration-none`
+                                button-change-autoLightMode
+                                data-autoLightMode=mode.autoLightMode
+                                ) Off
+                     tr 
+                        td #{3} 
+                        td Brightness
+                        td 100
+                            
     form(
         action=""
         method="POST"
-        id="form-change-mode"
-        data-path=`${prefixAdmin}/mode/change-mode`
+        id="form-change-powerSavingMode"
+        data-path=`${prefixAdmin}/mode/change-powerSavingMode`
+    )
+    form(
+        action=""
+        method="POST"
+        id="form-change-autoLightMode"
+        data-path=`${prefixAdmin}/mode/change-autoLightMode`
     )

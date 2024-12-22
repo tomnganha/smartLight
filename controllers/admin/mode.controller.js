@@ -12,8 +12,8 @@ module.exports.index = async (req, res) => {
     mode: mode,
   });
 };
-//[PATCH] /admin/mode/change-mode/:status/:data_mode
-module.exports.indexPatch = async (req, res) => {
+//[PATCH] /admin/mode/change-powerSavingMode/:status/:data_mode
+module.exports.powerSavingModePatch = async (req, res) => {
   const client = mqttConfig.client;
   let data = { [req.params.data_mode]: req.params.status };
   data = JSON.stringify(data);
@@ -30,4 +30,19 @@ module.exports.indexPatch = async (req, res) => {
   req.flash("success", "Status updated successfully");
   res.redirect("back");
   //   res.send("OK");
+};
+module.exports.autoLightModePatch = async (req, res) => {
+  const client = mqttConfig.client;
+  let data = { [req.params.data_mode]: req.params.status };
+  data = JSON.stringify(data);
+  console.log(req.params.data_mode, req.params.status);
+  client.publish(_PUBLISH_TOPIC, data, (error) => {
+    if (error) {
+      console.error(error);
+    }
+  });
+  await Mode.updateOne({ title: "mode" }, { autoLightMode: req.params.status });
+  req.flash("success", "Status updated successfully");
+  res.redirect("back");
+  // res.send("OK");
 };

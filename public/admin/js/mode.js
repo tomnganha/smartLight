@@ -1,22 +1,52 @@
-//change status
+//change powerSavingMode status
 const buttonChangePowerSavingMode = document.querySelector(
   "[button-change-powerSavingMode]"
 );
 
-console.log(buttonChangePowerSavingMode);
-const formChangeMode = document.querySelector("#form-change-mode");
-const path = formChangeMode.getAttribute("data-path");
+const formChangePowerSavingMode = document.querySelector(
+  "#form-change-powerSavingMode"
+);
+const path = formChangePowerSavingMode.getAttribute("data-path");
 
 buttonChangePowerSavingMode.addEventListener("click", (e) => {
-  const statusCurrent = buttonChangePowerSavingMode.getAttribute(
+  const statusPowerSavingModeCurrent = buttonChangePowerSavingMode.getAttribute(
     "data-powerSavingMode"
   );
   const data_mode = buttonChangePowerSavingMode.getAttribute("data-mode");
   // const title = button.getAttribute("data-title");
-  let statusChange = statusCurrent == "off" ? "on" : "off";
-  const action = path + `/${statusChange}/${data_mode}?_method=PATCH`;
-  formChangeMode.action = action;
-  formChangeMode.submit();
+  let statusPowerSavingModeChange =
+    statusPowerSavingModeCurrent == "off" ? "on" : "off";
+  const action =
+    path + `/${statusPowerSavingModeChange}/${data_mode}?_method=PATCH`;
+  formChangePowerSavingMode.action = action;
+  formChangePowerSavingMode.submit();
 });
 
-//end change status
+//end change powerSavingMode status
+
+//change autoLightMode status
+const buttonChangeAutoLightMode = document.querySelector(
+  "[button-change-autoLightMode]"
+);
+console.log(buttonChangeAutoLightMode);
+const formChangeAutoLightMode = document.querySelector(
+  "#form-change-autoLightMode"
+);
+console.log(formChangeAutoLightMode);
+const pathAutoLightMode = formChangeAutoLightMode.getAttribute("data-path");
+
+buttonChangeAutoLightMode.addEventListener("click", (e) => {
+  const statusAutoLightModeCurrent =
+    buttonChangeAutoLightMode.getAttribute("data-autoLightMode");
+  const data_autoLightMode =
+    buttonChangeAutoLightMode.getAttribute("data-mode");
+  // const title = button.getAttribute("data-title");
+  let statusAutoLightModeChange =
+    statusAutoLightModeCurrent == "off" ? "on" : "off";
+  const action =
+    pathAutoLightMode +
+    `/${statusAutoLightModeChange}/${data_autoLightMode}?_method=PATCH`;
+  formChangeAutoLightMode.action = action;
+  formChangeAutoLightMode.submit();
+});
+//end change autoLightMode status
