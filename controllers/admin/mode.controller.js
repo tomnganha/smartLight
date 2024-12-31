@@ -46,3 +46,27 @@ module.exports.autoLightModePatch = async (req, res) => {
   res.redirect("back");
   // res.send("OK");
 };
+
+module.exports.brightnessModePatch = async (req, res) => {
+  const client = mqttConfig.client;
+  let data = { brightness_normal: req.body.brightness_normal };
+  data = JSON.stringify(data);
+  console.log(data);
+  client.publish(_PUBLISH_TOPIC, data, (error) => {
+    if (error) {
+      console.error(error);
+    }
+  });
+  console.log(req.body.brightness_normal);
+  try {
+    await Mode.updateOne(
+      { title: "mode" },
+      { brightness_normal: req.body.brightness_normal }
+    );
+    req.flash("success", "updated successfully");
+    res.redirect(`${systemConfig.prefixAdmin}/devices`);
+  } catch (error) {
+    console.log("error");
+    res.redirect("back");
+  }
+};

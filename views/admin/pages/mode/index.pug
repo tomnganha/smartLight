@@ -1,10 +1,10 @@
 extends ../../layouts/default.pug
 include  ../../mixins/filterStatus.pug
+
 block main 
     h1 Mode pages
     div #{mode}
-block main 
-    div #{mode}
+    
     h1(class="mb-4") Mode pages 
     .card.mb-3 
         .card-header List 
@@ -60,7 +60,28 @@ block main
                      tr 
                         td #{3} 
                         td Brightness
-                        td 100
+                        td
+                            form(
+                                action=`${prefixAdmin}/mode/change-brightness_normal?_method=PATCH`
+                                method='POST'
+                            )
+                                div(class="form-group")
+                                    label(for="brightness_normal") Brightness 
+                                    input(
+                                        type="number"
+                                        min="30"
+                                        max="255"
+                                        class="form-control"
+                                        id="brightness_normal"
+                                        name="brightness_normal"
+                                        value=mode.brightness_normal
+                                        required 
+                                    )
+                                div(class="form-group")
+                                    button(
+                                        type="submit"
+                                        class="btn btn-primary"
+                                    ) Change 
                             
     form(
         action=""

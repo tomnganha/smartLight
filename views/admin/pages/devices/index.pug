@@ -32,7 +32,7 @@ block main
                             <th scope="col">Title</th>
                             <th scope="col">Status</th>
                             <th scope="col">Brightness</th>
-                            <th scope="col">Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -62,10 +62,6 @@ block main
                                         data-status=item.status
                                         ) Off
                                     //-label.form-check-label(for='flexSwitchCheckDefault') #{item.status=='on'?"ON":"OFF"}
-                                </td>
-                                <td>
-                                    label.form-label(for='customRange1') Bright ness
-                                    input#customRange1.form-range(type='range')
                                 </td>
                                 <td>
                                     a( href=`${prefixAdmin}/devices/details/${item._id}`

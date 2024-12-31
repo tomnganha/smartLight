@@ -12,4 +12,5 @@ router.patch(
   "/change-autoLightMode/:status/:data_mode",
   controller.autoLightModePatch
 );
+router.patch("/change-brightness_normal", controller.brightnessModePatch);
 module.exports = router;

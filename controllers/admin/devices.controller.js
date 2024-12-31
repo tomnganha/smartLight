@@ -154,7 +154,7 @@ module.exports.editPatch = async (req, res) => {
     status: "off",
     brightness_level: 100,
   };
-  console.log(req.body);
+  
   try {
     await Device.updateOne({ _id: req.params.id }, req.body);
     req.flash("success", "updated successfully");
