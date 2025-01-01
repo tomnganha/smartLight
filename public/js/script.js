@@ -14,7 +14,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
 var popup = L.popup();
-console.log("ok file script");
+
 var devices = [];
 const devicesElement = document.querySelectorAll(".device_item_map");
 
@@ -36,7 +36,6 @@ devicesElement.forEach((item, index) => {
     },
   };
 });
-console.log(devices);
 
 //createIcon
 
@@ -83,11 +82,8 @@ devices.forEach((item, i) => {
 
 //update status from MQTT Broker
 socket.on("SERVER_SEND_STATUS_FROM_MQTT", (data) => {
-  console.log(markers);
-  console.log("client received data from mqtt");
-  console.log(data);
   const bulkOps = Object.keys(data);
-  console.log(bulkOps);
+
   bulkOps.map((light, index) => {
     if (data[light] == "on") {
       markers[index].setIcon(greenIcon);
@@ -105,7 +101,6 @@ map.fitBounds(featureGroup.getBounds(), {
 });
 //End map
 function onMapClick(e) {
-  console.log("click");
   popup
     .setLatLng(e.latlng)
     .setContent("You clicked the map at " + e.latlng.toString())
@@ -120,6 +115,5 @@ if (showAlert) {
   setTimeout(() => {
     showAlert.classList.add("alert-hidden");
   }, time);
-  console.log(showAlert);
 }
 //end show alert

@@ -28,11 +28,11 @@ buttonChangePowerSavingMode.addEventListener("click", (e) => {
 const buttonChangeAutoLightMode = document.querySelector(
   "[button-change-autoLightMode]"
 );
-console.log(buttonChangeAutoLightMode);
+
 const formChangeAutoLightMode = document.querySelector(
   "#form-change-autoLightMode"
 );
-console.log(formChangeAutoLightMode);
+
 const pathAutoLightMode = formChangeAutoLightMode.getAttribute("data-path");
 
 buttonChangeAutoLightMode.addEventListener("click", (e) => {
