@@ -5,39 +5,39 @@ block top
 block main 
 
 block map
-    
-    h2(class="md-4") Description of the problem with #{light_title} (#{light_id})
-    form(
-        action=`/report/${light_id}`
-        id='form-report'
-        method='POST'
-    )
-        div(class="form-group")
-            label(for="light_id") Light Id
-            input(
-                type="text"
-                class="form-control"
-                id="light_id"
-                name="light_id"
-                value=light_id
-                readonly
-            )
-        div(class="form-group")
-            label(for="light_title") Title
-            input(
-                type="text"
-                class="form-control"
-                id="light_title"
-                name="light_title"
-                value=light_title
-                readonly
-            )
-        div(class="form-group")
-            textarea(id="report-desc" name="description" rows="4" cols="50")
-        div(class="form-group")
-            button(
-                id="btn-schedule"
-                type="submit"
-                class="btn btn-primary"
-            ) Report
+    .m-2
+        h2(class="md-4") Description of the problem with #{light_title} (#{light_id})
+        form(
+            action=`/report/${light_id}`
+            id='form-report'
+            method='POST'
+        )
+            div(class="form-group")
+                label(for="light_id") Light Id
+                input(
+                    type="text"
+                    class="form-control"
+                    id="light_id"
+                    name="light_id"
+                    value=light_id
+                    readonly
+                )
+            div(class="form-group")
+                label(for="light_title") Title
+                input(
+                    type="text"
+                    class="form-control"
+                    id="light_title"
+                    name="light_title"
+                    value=light_title
+                    readonly
+                )
+            div(class="form-group")
+                textarea(id="report-desc" name="description" rows="4" cols="50")
+            div(class="form-group")
+                button(
+                    id="btn-schedule"
+                    type="submit"
+                    class="btn btn-primary"
+                ) Report
             

@@ -36,4 +36,15 @@ block main
                 type="submit"
                 class="btn btn-primary"
             ) Set schedule 
+    form(
+        action=`${prefixAdmin}/schedule/remove?_method=PATCH`
+        id='form-remove-schedule'
+        method='POST'
+    )    
+        div(class="form-group")
+                button(
+                    id="btn-remove-schedule"
+                    type="submit"
+                    class="btn btn-danger"
+                ) Remove schedule 
     script(src="/admin/js/schedule.js")

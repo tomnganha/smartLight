@@ -23,3 +23,17 @@ module.exports.schedulePatch = async (req, res) => {
     res.redirect("back");
   }
 };
+//[PATCH] /admin/schedule/remove
+module.exports.removeSchedulePatch = async (req, res) => {
+  try {
+    await Schedule.updateOne(
+      { title: _SCHEDULE_TIME_ONOFF },
+      { onTime: "", offTime: "" }
+    );
+    req.flash("success", "Successful setup time");
+    res.redirect(`${systemConfig.prefixAdmin}/dashboard`);
+  } catch (error) {
+    console.log("error", error);
+    res.redirect("back");
+  }
+};
